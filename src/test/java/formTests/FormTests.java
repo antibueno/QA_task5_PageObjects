@@ -1,3 +1,5 @@
+package formTests;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
@@ -5,18 +7,21 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import pageObjects.RegistrationPage;
+import pageObjects.TestBase;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static pageObjects.RegistrationPage.typeLastName;
 
 public class FormTests {
 
     @BeforeEach
     void beforeEach () {
-        open("https://demoqa.com/automation-practice-form");
+    RegistrationPage.openPage();
     }
 
     @BeforeAll
@@ -39,8 +44,8 @@ public class FormTests {
         String myStateAndCity = "NCR Delhi";
 
         //test of text inputs
-        $(byId("firstName")).setValue(firstName);
-        $(byId("lastName")).setValue(lastName);
+        RegistrationPage.typeFirstName(firstName)
+                    .typeLastName(lastName);
         $(byId("userEmail")).setValue(myEmail);
         $(byText("Male")).click();
         $(byId("userNumber")).setValue(myNumber);
@@ -73,23 +78,18 @@ public class FormTests {
         $("#submit").click();
 
         //check all values
-        validation("Student Name", firstName + " " + lastName);
-        validation("Student Email", myEmail);
-        validation("Gender", "Male");
-        validation("Mobile", myNumber);
-        validation("Date of Birth", myBirthDate);
-        validation("Subjects", mySubject);
-        validation("Hobbies", myHobbies);
-        validation("Picture", myPicture);
-        validation("Address", myAddress);
-        validation("State and City", myStateAndCity);
-
-        //close table
-        //$("#closeLargeModal").click();
+        RegistrationPage.validation("Student Name", firstName + " " + lastName);
+        RegistrationPage.validation("Student Email", myEmail);
+        RegistrationPage.validation("Gender", "Male");
+        RegistrationPage.validation("Mobile", myNumber);
+        RegistrationPage.validation("Date of Birth", myBirthDate);
+        RegistrationPage.validation("Subjects", mySubject);
+        RegistrationPage.validation("Hobbies", myHobbies);
+        RegistrationPage.validation("Picture", myPicture);
+        RegistrationPage.validation("Address", myAddress);
+        RegistrationPage.validation("State and City", myStateAndCity);
 
     }
 
-    void validation(String label, String value) {
-        $(".table-responsive").$(byText(label)).parent().shouldHave(text(value));
-    }
+
 }
