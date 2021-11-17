@@ -10,8 +10,8 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
     //locators & elements
-    private final String FORM_TITLE = "Student Registration Form";
-    private SelenideElement
+    private static final String FORM_TITLE = "Student Registration Form";
+    private static SelenideElement
             formTitle = $(".practice-form-wrapper"),
             firstNameInput = $(".practice-form-wrapper"),
             lastNameInput = $("#lastName");
@@ -23,7 +23,7 @@ public class RegistrationPage {
         formTitle.shouldHave(text(FORM_TITLE));
     }
 
-    public RegistrationPage typeFirstName(String value) {
+    public static RegistrationPage typeFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
     }

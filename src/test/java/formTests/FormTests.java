@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static pageObjects.RegistrationPage.typeLastName;
 
-public class FormTests {
+public class FormTests extends TestBase{
 
     @BeforeEach
     void beforeEach () {
