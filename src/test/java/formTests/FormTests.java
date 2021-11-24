@@ -1,27 +1,21 @@
 package formTests;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import pageObjects.RegistrationPage;
-import pageObjects.TestBase;
+import pages.RegistrationPage;
+import pages.TestBase;
 
-import java.io.File;
-
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static pageObjects.RegistrationPage.typeLastName;
+import static pages.TestData.*;
 
 public class FormTests extends TestBase{
 
     @BeforeEach
     void beforeEach () {
-    RegistrationPage.openPage();
+        registrationPage.openPage();
     }
 
     @BeforeAll
@@ -30,66 +24,46 @@ public class FormTests extends TestBase{
     }
 
     @Test
-    void selenideSearchTest() {
-        //resources
-        String firstName = "Denis";
-        String lastName = "Kananykhin";
-        String myEmail = "useremail@test.com";
-        String myNumber = "1234567891";
-        String myBirthDate = "25 January,1992";
-        String mySubject = "Accounting";
-        String myHobbies = "Sports, Music";
-        String myPicture = "cat.png";
-        String myAddress = "somewhere in Syberia";
-        String myStateAndCity = "NCR Delhi";
-
+    void registrationFormTests() {
         //test of text inputs
-        RegistrationPage.typeFirstName(firstName)
-                    .typeLastName(lastName);
-        $(byId("userEmail")).setValue(myEmail);
-        $(byText("Male")).click();
-        $(byId("userNumber")).setValue(myNumber);
+        registrationPage.typeFirstName(firstName);
+        registrationPage.typeLastName(lastName);
+        registrationPage.fillEmailInput(myEmail);
+        registrationPage.setYourGender();
+        registrationPage.setPhoneNumber(myNumber);
 
         //test of calendar
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("January");
-        $(".react-datepicker__year-select").selectOption("1992");
-        $$(".react-datepicker__day").find(Condition.text("25")).click();
+        registrationPage.calendarComponent.setDate("25", "January", "1992");
 
         //test of subject input
-        $(byId("subjectsInput")).setValue("Acc").pressEnter();
+        registrationPage.fillSubjectInput(mySubject);
 
         //test of hobbies checkboxes
-        $(byText("Sports")).click();
-        $(byText("Music")).click();
+        registrationPage.setHobbiesCheckbox(myHobbie);
 
         //test of file upload
-        $("#uploadPicture").uploadFromClasspath("cat.png");
+        registrationPage.uploadPicture();
 
         //test of current address
-        $(byId("currentAddress")).setValue(myAddress);
+        registrationPage.fillMyAddress(myAddress);
+
         //test of State
-        $("#state").click();
-        $(byText("NCR")).click();
+        registrationPage.stateComponent.setStateInput(myState);
         //test of City
-        $("#city").click();
-        $(byText("Delhi")).click();
+        registrationPage.stateComponent.setCityInput(myCity);
         //press submit button
-        $("#submit").click();
+        registrationPage.clickSubmitButton();
 
         //check all values
-        RegistrationPage.validation("Student Name", firstName + " " + lastName);
-        RegistrationPage.validation("Student Email", myEmail);
-        RegistrationPage.validation("Gender", "Male");
-        RegistrationPage.validation("Mobile", myNumber);
-        RegistrationPage.validation("Date of Birth", myBirthDate);
-        RegistrationPage.validation("Subjects", mySubject);
-        RegistrationPage.validation("Hobbies", myHobbies);
-        RegistrationPage.validation("Picture", myPicture);
-        RegistrationPage.validation("Address", myAddress);
-        RegistrationPage.validation("State and City", myStateAndCity);
-
+        registrationPage.validation("Student Name", firstName + " " + lastName);
+        registrationPage.validation("Student Email", myEmail);
+        registrationPage.validation("Gender", "Male");
+        registrationPage.validation("Mobile", myNumber);
+        registrationPage.validation("Date of Birth", myBirthDate);
+        registrationPage.validation("Subjects", mySubject);
+        registrationPage.validation("Hobbies", myHobbie);
+        registrationPage.validation("Picture", myPicture);
+        registrationPage.validation("Address", myAddress);
+        registrationPage.validation("State and City", myState + myCity);
     }
-
-
 }
