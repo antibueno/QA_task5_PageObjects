@@ -8,10 +8,10 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class CalendarComponent {
 
-    private SelenideElement dateInput = $("#dateOfBirthInput");
-    private SelenideElement monthInput = $(".react-datepicker__month-select");
-    private SelenideElement yearInput = $(".react-datepicker__year-select");
-    private SelenideElement dayInput = (SelenideElement) $$(".react-datepicker__day");
+    private final SelenideElement dateInput = $("#dateOfBirthInput");
+    private final SelenideElement monthInput = $(".react-datepicker__month-select");
+    private final SelenideElement yearInput = $(".react-datepicker__year-select");
+    private final SelenideElement dayInput = (SelenideElement) $$(".react-datepicker__day");
 
 
     public void setDate(String day, String month, String year) {

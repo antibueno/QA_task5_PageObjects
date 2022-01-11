@@ -1,7 +1,10 @@
 package pages;
+import com.github.javafaker.Faker;
+import java.util.Locale;
 
 public class TestData {
-    public static String firstName = "Denis";
+    static Faker faker = new Faker (new Locale("ru"));
+    public static String firstName = faker.name().fullName();
     public static  String lastName = "Kananykhin";
     public static  String myEmail = "useremail@test.com";
     public static String myNumber = "1234567891";

@@ -18,11 +18,6 @@ public class FormTests extends TestBase{
         registrationPage.openPage();
     }
 
-    @BeforeAll
-    static void beforeALl () {
-        Configuration.startMaximized = true;
-    }
-
     @Test
     void registrationFormTests() {
         //test of text inputs
