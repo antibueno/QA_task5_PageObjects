@@ -63,8 +63,8 @@ public class RegistrationPage {
         subjectsInput.setValue(value).pressEnter();
     }
 
-    public void setHobbiesCheckbox(String value) {
-        hobbieCheckbox.setValue(value).click();
+    public void setHobbiesCheckbox() {
+        hobbieCheckbox.click();
     }
 
     public void uploadPicture(){

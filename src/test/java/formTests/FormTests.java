@@ -28,7 +28,7 @@ public class FormTests extends TestBase{
         registrationPage.fillSubjectInput(mySubject);
 
         //test of hobbies checkboxes
-        registrationPage.setHobbiesCheckbox(myHobbie);
+        registrationPage.setHobbiesCheckbox();
 
         //test of file upload
         registrationPage.uploadPicture();
@@ -53,6 +53,6 @@ public class FormTests extends TestBase{
         registrationPage.validation("Hobbies", myHobbie);
         registrationPage.validation("Picture", myPicture);
         registrationPage.validation("Address", myAddress);
-        registrationPage.validation("State and City", myState + myCity);
+        registrationPage.validation("State and City", myState + " " + myCity);
     }
 }
