@@ -19,7 +19,7 @@ public class RegistrationPage {
     private static final String FORM_TITLE = "Student Registration Form";
     private static final SelenideElement
             formTitle = $(".practice-form-wrapper"),
-            firstNameInput = $(".practice-form-wrapper"),
+            firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
             genderButton = $(byText("Male")),

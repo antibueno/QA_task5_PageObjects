@@ -20,6 +20,5 @@ public class CalendarComponent {
         monthInput.selectOption(month);
         yearInput.selectOption(year);
         dayInput.find(Condition.text(day)).click();
-        //$$(".react-datepicker__day").find(Condition.text("25")).click();
     }
 }
