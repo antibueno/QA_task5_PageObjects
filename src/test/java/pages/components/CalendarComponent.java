@@ -1,6 +1,7 @@
 package pages.components;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -11,13 +12,14 @@ public class CalendarComponent {
     private final SelenideElement dateInput = $("#dateOfBirthInput");
     private final SelenideElement monthInput = $(".react-datepicker__month-select");
     private final SelenideElement yearInput = $(".react-datepicker__year-select");
-    private final SelenideElement dayInput = (SelenideElement) $$(".react-datepicker__day");
+    private final ElementsCollection dayInput = $$(".react-datepicker__day");
 
 
     public void setDate(String day, String month, String year) {
         dateInput.click();
         monthInput.selectOption(month);
         yearInput.selectOption(year);
-        dayInput.find(String.valueOf(Condition.text(day))).click();
+        dayInput.find(Condition.text(day)).click();
+        //$$(".react-datepicker__day").find(Condition.text("25")).click();
     }
 }

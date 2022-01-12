@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static pages.TestData.myState;
 
 public class StateComponent {
-    private static SelenideElement stateInput = $("#state"),
+    private final static SelenideElement stateInput = $("#state"),
     cityInput = $("#city");
 
     public void setStateInput(String value){
